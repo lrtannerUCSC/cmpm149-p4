@@ -19,13 +19,21 @@ def op_craft_wooden_axe_at_bench (state, ID):
 	return False
 
 # your code here
+# def op_craft_plank (state, ID):
+# 	state.plank[ID] += 4
+# 	state.wood[ID] -= 1
+# 	state.time[ID] -= 1
+# 	return state
+
 def op_craft_plank (state, ID):
 	if state.time[ID] >= 1 and state.wood[ID] >= 1:
+		
 		state.plank[ID] += 4
 		state.wood[ID] -= 1
 		state.time[ID] -= 1
 		return state
 	return False
+
 
 def op_craft_stick (state, ID):
 	if state.time[ID] >= 1 and state.plank[ID] >= 2:
@@ -50,7 +58,7 @@ def op_wooden_axe_for_wood (state, ID):
 		return state
 	return False
 
-pyhop.declare_operators (op_punch_for_wood, op_craft_wooden_axe_at_bench, op_craft_bench, op_craft_stick, op_wooden_axe_for_wood)
+pyhop.declare_operators (op_punch_for_wood, op_craft_wooden_axe_at_bench, op_craft_plank, op_craft_bench, op_craft_stick, op_wooden_axe_for_wood)
 
 '''end operators'''
 
@@ -107,7 +115,7 @@ def wooden_axe_for_wood (state, ID):
 	return [('have_enough', ID, 'wooden_axe', 1), ('op_wooden_axe_for_wood', ID)]
 
 
-pyhop.declare_methods ('produce_wood',  wooden_axe_for_wood, punch_for_wood)
+pyhop.declare_methods ('produce_wood', wooden_axe_for_wood, punch_for_wood)
 pyhop.declare_methods ('produce_plank', craft_plank)
 pyhop.declare_methods ('produce_stick', craft_stick)
 pyhop.declare_methods ('produce_bench', craft_bench)
@@ -123,10 +131,10 @@ state.bench = {'agent': 0}
 state.stick = {'agent': 0}
 state.plank = {'agent': 0}
 state.wooden_axe = {'agent': 0}
-# state.time = {'agent': 4}
-state.time = {'agent': 100} # needs to beat 46
-state.wooden_axe = {'agent': 0}
 state.made_wooden_axe = {'agent': False}
+# state.time = {'agent': 4}
+state.time = {'agent': 46} # needs to beat 46
+
 # your code here 
 
 # pyhop.print_operators()
