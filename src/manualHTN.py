@@ -15,7 +15,6 @@ def op_craft_wooden_axe_at_bench (state, ID):
 		state.plank[ID] -= 3
 		state.stick[ID] -= 2
 		state.time[ID] -= 1
-		state.made_wooden_axe[ID] = True
 		return state
 	return False
 
